@@ -1,3 +1,4 @@
+# noqa: N805
 from datetime import datetime
 from typing import Optional
 
@@ -8,19 +9,22 @@ class CharityProjectBase(BaseModel):
     name: Optional[str] = Field(None, max_length=100)
     description: Optional[str]
     full_amount: Optional[PositiveInt]
-    
+
     class Config:
         extra = Extra.forbid
-    
+
     @validator('name')
+    @classmethod
     def name_cannot_be_null_or_more_100(cls, value):
         if value is None or value == '':
             raise ValueError('Имя проекта не может быть пустым!')
         if len(value) > 100:
-            raise ValueError('Длина проекта не может быть больше 100 символов!')
+            raise ValueError(
+                'Длина проекта не может быть больше 100 символов!')
         return value
-    
+
     @validator('description')
+    @classmethod
     def description_cannot_be_null(cls, value):
         if value is None or value == '':
             raise ValueError('Описание не может быть пустым!')

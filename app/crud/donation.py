@@ -8,7 +8,7 @@ from app.models import User
 from app.models.donation import Donation
 
 
-class CRUDReservation(CRUDBase):
+class CRUDDonation(CRUDBase):
 
     async def get_by_user(
             self,
@@ -18,8 +18,7 @@ class CRUDReservation(CRUDBase):
         donations = await session.execute(select(Donation).where(
             Donation.user_id == user.id
         ))
-        donations = donations.scalars().all()
-        return donations
+        return donations.scalars().all()
 
 
-donations_crud = CRUDReservation(Donation)
+donations_crud = CRUDDonation(Donation)
