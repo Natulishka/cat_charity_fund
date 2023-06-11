@@ -43,17 +43,29 @@ python -m pip install --upgrade pip
 
 pip install -r requirements.txt
 ```
+Создать и заполнить файл .env со следующими переменными:
+
+```
+APP_TITLE=Название приложения
+DESCRIPTION=Описание приложения
+VERSION=Версия приложения
+DATABASE_URL=sqlite+aiosqlite:///./название_БД.db
+SECRET=Секретное слово
+FIRST_SUPERUSER_EMAIL=Почта
+FIRST_SUPERUSER_PASSWORD=Пароль
+```
 
 Применить миграции:
 
 ```
 alembic upgrade head
 ```
+
 Запустить сервис:
 ```
 uvicorn app.main:app --reload
 ```
-Документация:
+## Документация:
 ```
 http://127.0.0.1:8000/docs
 http://127.0.0.1:8000/redoc

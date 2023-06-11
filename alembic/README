@@ -1,1 +1,31 @@
-Generic single-database configuration with an async dbapi.
+## Основные команды
+
+Установить в виртуальное окружение библиотеку Alembic
+```
+pip install alembic==1.7.7
+```
+Инициализировать Alembic
+```
+alembic init --template async alembic
+```
+Автоматическое создание файла миграций
+```
+alembic revision --autogenerate -m "Название миграции"
+```
+Выполнение всех неприменённых миграций
+```
+alembic upgrade head
+```
+Отменить все миграции, которые были в проекте
+```
+alembic downgrade base
+```
+Увидеть в терминале все миграции в хронологическом порядке
+```
+alembic history -v 
+```
+Посмотреть последнюю применённую миграцию
+```
+alembic current 
+```
+## !!! Все новые модели нужно импортировать в файл app/core/base.py !!!
